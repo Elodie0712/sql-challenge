@@ -11,7 +11,8 @@
     first_name VARCHAR (45) Not null, 
     last_name VARCHAR (45) Not null,
     sex VARCHAR (1) Not null,
-    hire_date DATE Not Null	
+    hire_date DATE Not Null, 
+    FOREIGN KEY (emp_title_id) REFERENCES titles (title_id)
 );
 
  CREATE TABLE dept_emp (
@@ -25,11 +26,13 @@
  CREATE TABLE dept_manager  (
 	dept_no VARCHAR (6) Not null,
     emp_no INTEGER Not null,
-	foreign key (emp_no) references employees (emp_no)
+	foreign key (emp_no) references employees (emp_no),
+    FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
+    PRIMARY KEY (dept_no,emp_no)
 );
 
 CREATE TABLE salaries (
-	emp_no Integer Not null, 
+	emp_no Integer Not null PRIMARY KEY, 
 	salary  INTEGER Not Null,
 	foreign key (emp_no) references employees (emp_no)
 );
